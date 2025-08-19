@@ -40,6 +40,14 @@ oms_num BIGINT REFERENCES patients(oms) ON DELETE CASCADE -- Ссылка на o
 );
 
 
+----
+update patients
+set fio = 'Жулебина Светлана Ивановна'
+where patient_id = 1
+
+
+
+----
 
 CREATE TABLE
 NOT NULL - значение в этой таблице никогда не может быть пустым
