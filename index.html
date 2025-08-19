@@ -20,6 +20,25 @@ CREATE TABLE med_area (
 );
 
 
+---
+
+CREATE TABLE patients (
+patient_id SERIAL PRIMARY KEY, -- Главный ключ для JOIN
+oms BIGINT NOT NULL UNIQUE -- Уникальный бизнес-ключ для ссылок
+);
+
+-- Теперь можно создавать таблицы, которые ссылаются на patient_id
+CREATE TABLE some_table (
+id SERIAL PRIMARY KEY,
+patient_id INTEGER REFERENCES patients(patient_id) ON DELETE CASCADE
+);
+
+-- И таблицы, которые логичнее ссылаются прямо на номер полиса (OMS)
+CREATE TABLE talons (
+talon_id SERIAL PRIMARY KEY,
+oms_num BIGINT REFERENCES patients(oms) ON DELETE CASCADE -- Ссылка на oms!
+);
+
 
 
 CREATE TABLE
