@@ -36,3 +36,9 @@ foreign key (user_id)
 references users (user_id)
 on delete cascade
 );
+
+
+
+
+alter table user_settings
+add column birthday date;
