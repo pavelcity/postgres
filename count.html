@@ -1,0 +1,35 @@
+select count(*) from users
+
+min
+select min(price) from successful_installations
+
+max
+select max(price) from successful_installations
+
+avg - среднее
+select avg(price) from successful_installations
+
+sum - считает сумму
+select sum(price) from successful_installations
+
+select count(*), date from successful_installations
+group by date
+
+
+!!!!!
+
+select count(*), date from successful_installations
+group by date
+order by count(*) desc
+
+select count(*), code_magnitola from successful_installations
+group by code_magnitola
+order by count(*) desc
+
+->
+select count(*), magnitola from successful_installations
+group by magnitola
+order by count(*) desc
+<-
+
+
