@@ -33,3 +33,13 @@ order by count(*) desc
 <-
 
 
+select count(*) as cnt, date from successful_installations
+group by date
+having count(*) > 2
+order by cnt desc
+
+
+
+
+
+
