@@ -39,7 +39,39 @@ having count(*) > 2
 order by cnt desc
 
 
+#where id in
+select * from successful_installations
+where id in (13, 4, 1)
 
 
+select * from successful_installations
+where code_magnitola in ('3242B', '3242D')
 
+
+!!!!
+select count(*), code_magnitola, magnitola from successful_installations
+where code_magnitola in ('3242B', '3242D')
+group by code_magnitola, magnitola
+
+
+###
+Отсутствие значения (NULL)
+select * from successful_installations
+where artikul_komplekt is null
+
+
+###
+limit
+select * from successful_installations
+where artikul_komplekt is not null
+limit 10
+
+limit 4 offset 2
+
+
+###
+Условия, ветвления (CASE)
+select mc, customer, phone, car,
+case when mc = 45430 then 'мой склад' else 'my sklad' end as как_то_так
+from successful_installations
 
