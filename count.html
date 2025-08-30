@@ -75,3 +75,29 @@ select mc, customer, phone, car,
 case when mc = 45430 then 'мой склад' else 'my sklad' end as как_то_так
 from successful_installations
 
+
+#####
+select date, sum(price) from successful_installations
+group by date
+
+
+### group
+По своей сути группировка «схлопывает» множество строчек в одну
+
+select date, car, magnitola, sum(price) from successful_installations
+group by date, car, magnitola
+order by date
+
+select date, sum(price), count(*) as установок from successful_installations
+group by date
+order by date
+
+Давайте разберем наиболее распространенные ошибки при группировке данных в SQL.
+В части SELECT необходимо указывать поля, которые указываются в GROUP BY, или агрегирующие функции(SUM(),
+MAX(),MIN(),AVG(), COUNT()), например:
+
+SELECT user_id, event_date, SUM(revenue) 
+FROM game_events
+GROUP BY user_id, event_date
+
+
