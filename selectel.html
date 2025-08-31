@@ -1,0 +1,55 @@
+drop table if exists books cascade;
+
+create table books (
+    id serial primary key,
+    title varchar (100) not null,
+    published_date date,
+    available boolean default true,
+    genre varchar (100),
+    author_id int references authors(id)
+)
+
+
+
+найти всех авторов и все их книги, используя JOIN
+
+select books.title, authors.first_name, authors.last_name
+from books
+join authors on books.author_id = authors.id
+
+
+
+CREATE TABLE borrowed_books (
+    id SERIAL PRIMARY KEY,
+    borrow_date DATE NOT NULL,
+    return_date DATE,
+    book_id INTEGER REFERENCES books(id),
+    borrower_id INTEGER REFERENCES borrowers(id)
+);
+
+
+узнать, какие книги взял пользователь с id 1
+
+select books.title, borrowed_books.borrow_date, borrowed_books.return_date
+from books
+join
+borrowed_books ON books.id = borrowed_books.book_id
+where borrowed_books.borrower_id = 1
+
+
+
+сколько книг какого жанра находится в библиотеке
+
+select genre, count(*) as book_count
+from books
+group by genre
+order by book_count desc
+
+
+
+Транзакция
+
+BEGIN;
+UPDATE buyers SET balance = balance - 10000 WHERE "name" = 'Михаил Сидоров';
+UPDATE buyers SET balance = balance + 11000 WHERE "name" = 'Елена Кузнецова';
+COMMIT;
