@@ -53,3 +53,15 @@ BEGIN;
 UPDATE buyers SET balance = balance - 10000 WHERE "name" = 'Михаил Сидоров';
 UPDATE buyers SET balance = balance + 11000 WHERE "name" = 'Елена Кузнецова';
 COMMIT;
+
+
+begin;
+
+insert into buyers (name, email, balance)
+values ('Егор Славин', 'slavin@m.com', 700);
+
+savepoint added_slavin;
+
+rollback to added_slavin;
+
+commit;
